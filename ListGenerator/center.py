@@ -1,10 +1,10 @@
 from pathlib import Path
 
-from module import *
+from module.center import Center
 
 from util import FileProcessor
 
-def getCenterList(dataPath:Path):
+def getCenterList(dataPath:Path) ->[Center]:
     fp = FileProcessor()
     partList = fp.getPartList(dataPath)
     rtnList = []

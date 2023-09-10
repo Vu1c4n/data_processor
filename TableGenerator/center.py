@@ -2,7 +2,7 @@ import csv
 from module.center import Center
 
 def centerTableGenerator(centerList:[Center]):
-    with open("center.csv", "w", encoding="utf-8") as f:
+    with open("./output/center.csv", "w", encoding="utf-8") as f:
         csv_writer = csv.writer(f)
         # 表头
         csv_writer.writerow(["name", "content", "src", "url", "part"])

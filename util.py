@@ -7,7 +7,7 @@ class FileProcessor:
     # APIs
     def getPartList(self, partPath:Path) ->[Part]:
         partList = []
-        partNameList = self.__getSectionList(partPath)
+        partNameList = self.getDirList(partPath)
         for partName in partNameList:
             part = Part(name = partName)
             partList.append(part)
@@ -15,14 +15,14 @@ class FileProcessor:
     
     def getCenterList(self, centerPath:Path) ->[Center]:
         centerList = []
-        centerNameList = self.__getSectionList(centerPath)
+        centerNameList = self.getDirList(centerPath)
         for centerName in centerNameList:
             center = Center(name = centerName)
             centerList.append(center)
         return centerList
 
     def getNameList(self, sectionPath:Path) -> [str]:
-        return self.__getSectionList(sectionPath)
+        return self.getDirList(sectionPath)
 
     def getIntro(self, sectionPath: Path) ->str:
         intro = str()
@@ -31,17 +31,18 @@ class FileProcessor:
                 intro = self.__readTxt(path)
                 break
         return intro
-
-    # Helper Methods
-    def __readTxt(self, txtPath: Path) -> str:
-        with open(txtPath, "r", encoding="utf-8") as file:
-            content = file.read()
-        return content
     
-    def __getSectionList(self, sectionPath: Path) -> [str]:
+    def getDirList(self, sectionPath: Path) -> [str]:
         sectionList = []
         for path in sectionPath.iterdir():
             if path.is_file():
                 continue
             sectionList.append(path.name)
         return sectionList
+    
+    # Helper Methods
+    def __readTxt(self, txtPath: Path) -> str:
+        with open(txtPath, "r", encoding="utf-8") as file:
+            content = file.read()
+        return content
+    

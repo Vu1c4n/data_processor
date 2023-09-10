@@ -1,10 +1,10 @@
 from pathlib import Path
 
-from module import *
+from module.part import Part
 
 from util import FileProcessor
 
-def getPartList(dataPath:Path):
+def getPartList(dataPath:Path) -> [Part]:
     fp = FileProcessor()
     partList = fp.getPartList(dataPath)
 
